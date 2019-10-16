@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.registerShow {
+  animation: test linear .4s;
+  animation-fill-mode: forwards;
+  position: absolute;
+
+}
+
+@keyframes test {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: 50%;
+    transform: translate(50%, 0)
+  }
+}
+
+.loginShow {
+  animation: test2 linear .4s;
+  animation-fill-mode: forwards;
+  position: absolute;
+}
+
+@keyframes test2 {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 50%;
+    transform: translate(-50%, 0)
+  }
+}
