@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AppContainerBackground from "../assets/background.jpg";
 import { ToastContainer } from "react-toastify";
 
-const AuthContainer = ({ children }) => {
+const AuthPage = ({ children }) => {
   return (
     <AppContainer>
       {children} <ToastContainer autoClose={2000} />
@@ -11,7 +11,7 @@ const AuthContainer = ({ children }) => {
   );
 };
 
-export default AuthContainer;
+export default AuthPage;
 const AppContainer = styled.div`
   min-height: 100vh;
   background-image: url(${AppContainerBackground});

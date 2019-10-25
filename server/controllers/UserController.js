@@ -19,7 +19,7 @@ const loginSchema = {
 };
 
 const findCurrent = async (req, res) => {
-  console.log(req.body.id);
+  // console.log(req.body.id);
   const user = await User.find({ _id: req.body.id });
   if (!user)
     return res.status(500).json({ error: { message: "user not found" } });

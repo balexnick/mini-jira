@@ -1,42 +1,44 @@
-const Clients = require("../models/Clients");
+const Tasks = require("../models/Tasks");
 const Joi = require("joi");
-const createNewClient = {
-  name: Joi.string().required(),
-  surname: Joi.string().required()
+const createNewTask = {
+  title: Joi.string().required(),
+  description: Joi.string().required(),
+  date: Joi.string().required()
 };
-const updateUser = {
+const updateTask = {
   id: Joi.string().required(),
-  name: Joi.string().required(),
-  surname: Joi.string().required()
+  title: Joi.string().required(),
+  description: Joi.string().required(),
+  date: Joi.string().required()
 };
 
 const all = (req, res) => {
-  Clients.find()
+  Tasks.find()
     .exec()
-    .then(clients => res.json(clients));
+    .then(tasks => res.json(tasks));
 };
 
 const create = (req, res) => {
   const data = req.body;
-  Joi.validate(data, createNewClient, (err, value) => {
+  Joi.validate(data, createNewTask, (err, value) => {
     if (err) {
       return res.status(422).json({ error: err.details });
     } else {
-      Clients.create(req.body);
+      Tasks.create(req.body);
       res.status(201).json({
         status: "success",
-        data
+        message: 'Task successfully created'
       });
     }
   });
 };
 const update = (req, res) => {
   const data = req.body;
-  Joi.validate(data, updateUser, (err, value) => {
+  Joi.validate(data, updateTask, (err, value) => {
     if (err) {
       return res.status(500).json({ message: err.details });
     } else {
-      Clients.findOneAndUpdate({ _id: req.params.id }, data);
+      Tasks.findOneAndUpdate({ _id: req.params.id }, data);
       res.status(200).json({
         status: "success",
         data
@@ -46,7 +48,7 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  const removeUser = Clients.findOneAndDelete({ _id: req.params.id }).exec();
+  const removeUser = Tasks.findOneAndDelete({ _id: req.params.id }).exec();
   if (!removeUser) {
     return res.status(500).json({ error: { message: "not exist" } });
   }

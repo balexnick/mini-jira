@@ -5,7 +5,6 @@ import { requestHandler } from "../utils/requestHandler";
 import { toast } from "react-toastify";
 
 export function currentUser(data) {
-  console.log(data);
   return dispatch => {
     const options = {
       type: "post",
@@ -14,7 +13,6 @@ export function currentUser(data) {
     };
     requestHandler(options)
       .then(response => {
-        console.log(response);
         dispatch({ type: CONSTANT.USER_NAME, payload: response.data[0].name });
       })
       .catch(err => {
@@ -35,14 +33,12 @@ export function register(data) {
 
     requestHandler(options)
       .then(response => {
-        console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userId", JSON.stringify(response.data.id));
         dispatch({ type: CONSTANT.USER_NAME, payload: response.data.name });
         browserHistory.push("/");
       })
       .catch(err => {
-        console.log(err.response.data.message);
         if (err.response && err.response.data.error.message) {
           toast.error(err.response.data.error.message);
         }
@@ -59,7 +55,6 @@ export function login(data) {
     };
     requestHandler(options)
       .then(response => {
-        console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userId", JSON.stringify(response.data.id));
         dispatch({ type: CONSTANT.USER_NAME, payload: response.data.name });

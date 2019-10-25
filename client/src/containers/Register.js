@@ -5,9 +5,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import registerImg from "../assets/register.png";
 import { register } from "../actions/actions";
-import CustomInput from "../components/CustomInput";
-import CustomButton from "../components/CustomButton";
-import CustomAuthPage from "../components/CustomAuthPage";
+import CustomInput from "../common/CustomInput";
+import CustomButton from "../common/CustomButton";
+import AuthWindow from "../components/AuthWindow";
 
 class Register extends Component {
   state = {
@@ -26,7 +26,7 @@ class Register extends Component {
   };
   render() {
     return (
-      <CustomAuthPage name="loginShow" image={registerImg} text="Sign Up">
+      <AuthWindow name="loginShow" image={registerImg} text="Sign Up">
         <CustomInput
           inputValue="Name"
           typeInp="text"
@@ -48,7 +48,7 @@ class Register extends Component {
             Sing in
           </RedirectToPage>
         </Buttons>
-      </CustomAuthPage>
+      </AuthWindow>
     );
   }
 }

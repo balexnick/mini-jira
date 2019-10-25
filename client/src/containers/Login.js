@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import loginImg from "../assets/login.png";
 import { login } from "../actions/actions";
-import CustomInput from "../components/CustomInput";
-import CustomButton from "../components/CustomButton";
-import CustomAuthPage from "../components/CustomAuthPage";
+import CustomInput from "../common/CustomInput";
+import CustomButton from "../common/CustomButton";
+import AuthWindow from "../components/AuthWindow";
 
 class Login extends Component {
   state = {
@@ -24,7 +24,7 @@ class Login extends Component {
   };
   render() {
     return (
-      <CustomAuthPage name="registerShow" image={loginImg} text="Sign in">
+      <AuthWindow name="registerShow" image={loginImg} text="Sign in">
         <CustomInput
           inputValue="Email"
           typeInp="email"
@@ -41,7 +41,7 @@ class Login extends Component {
             Sign up
           </RedirectToPage>
         </Buttons>
-      </CustomAuthPage>
+      </AuthWindow>
     );
   }
 }

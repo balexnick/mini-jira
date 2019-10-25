@@ -5,6 +5,7 @@ class Logout extends Component {
   state = {};
   componentDidMount() {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
   }
   render() {
     return <Redirect to="/" />;

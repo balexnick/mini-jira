@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const CustomAuthPage = ({ children, image, text, name }) => {
+const AuthWindow = ({ children, image, text, name }) => {
   return (
     <AuthContainer className={name}>
       <Img src={image} alt="logo" />
@@ -13,7 +13,7 @@ const CustomAuthPage = ({ children, image, text, name }) => {
   );
 };
 
-export default CustomAuthPage;
+export default AuthWindow;
 const AuthContainer = styled.div`
   width: 50vw;
   background: #f7f7f7;
