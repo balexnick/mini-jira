@@ -1,7 +1,9 @@
 import axios from "axios";
 import qs from "qs";
+import cookies from 'js-cookie'
+
 export const requestHandler = options => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = cookies.get("token");
 
   let axiosOptions = {
     url: process.env.REACT_APP_API_URL + options.url,

@@ -1,37 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { CustomWindow } from '../../common/Styled/index'
+import PropTypes from 'prop-types';
 
 const AuthWindow = ({ children, image, text, name }) => {
   return (
-    <AuthContainer className={name}>
+    <CustomWindow className={name}>
       <Img src={image} alt="logo" />
       <AuthForm>
         <h1>{text}</h1>
         {children}
       </AuthForm>
-    </AuthContainer>
+    </CustomWindow>
   );
 };
 
 export default AuthWindow;
-const AuthContainer = styled.div`
-  width: 50vw;
-  background: #f7f7f7;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 55px;
-  border-radius: 5px;
-  position: relative;
-  @media (max-width: 1200px) {
-    width: 70vw;
-  }
-  @media (max-width: 665px) {
-    justify-content: center;
-    padding: 30px;
-  }
-`;
+
+AuthWindow.propTypes = {
+  children: PropTypes.array.isRequired,
+  image: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+}
+
 const AuthForm = styled.div`
   display: flex;
   flex-direction: column;

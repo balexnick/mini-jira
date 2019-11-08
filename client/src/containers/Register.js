@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { browserHistory } from "../index";
-import { connect } from "react-redux";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import registerImg from "../assets/register.png";
-import { register } from "../actions/actions";
-import CustomInput from "../common/CustomInput";
-import CustomButton from "../common/CustomButton";
-import AuthWindow from "../components/AuthWindow";
+import React, { Component } from 'react';
+import { browserHistory } from '../index';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import registerImg from '../assets/register.png';
+import { register } from '../actions/actions';
+import CustomInput from '../common/CustomInput';
+import CustomButton from '../common/CustomButton';
+import AuthWindow from '../components/auth/AuthWindow';
+import { RedirectToPage } from '../common/Styled/index'
 
 class Register extends Component {
   state = {
@@ -26,24 +27,29 @@ class Register extends Component {
   };
   render() {
     return (
-      <AuthWindow name="loginShow" image={registerImg} text="Sign Up">
+      <AuthWindow name="showWindowRight" image={registerImg} text="Sign Up">
         <CustomInput
-          inputValue="Name"
+          inputPlaceholder="Name"
           typeInp="text"
           setValue={val => this.setState({ name: val })}
         />
         <CustomInput
-          inputValue="Email"
+          inputPlaceholder="Email"
           typeInp="email"
           setValue={val => this.setState({ email: val })}
         />
         <CustomInput
-          inputValue="Password"
+          inputPlaceholder="Password"
           typeInp="password"
           setValue={val => this.setState({ password: val })}
         />
         <Buttons>
-          <CustomButton text="Sign up" setClick={this.signUp} />
+          <CustomButton
+            text="Sign up"
+            bgColor={'transparent'}
+            brColor={'1px solid #f27059'}
+            textColor={'#f27059'}
+            setClick={this.signUp} />
           <RedirectToPage onClick={() => browserHistory.push("/signIn")}>
             Sing in
           </RedirectToPage>
@@ -62,18 +68,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Register);
+export default connect(null, mapDispatchToProps)(Register);
 
-const RedirectToPage = styled.div`
-  margin: 0;
-  cursor: pointer;
-  color: #7e7efa;
-  text-decoration: 1;
-  padding: 0 25px;
-`;
+
 const Buttons = styled.div`
   width: 100%;
   display: flex;

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import cookies from 'js-cookie'
 
 class Logout extends Component {
   state = {};
   componentDidMount() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+    cookies.remove("token");
+    cookies.remove("userId");
   }
   render() {
     return <Redirect to="/" />;

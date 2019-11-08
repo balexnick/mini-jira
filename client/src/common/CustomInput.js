@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-const CustomInput = ({ setValue, inputValue, typeInp }) => {
+const CustomInput = ({ setValue, inputPlaceholder, typeInp, disabled, inpValue }) => {
   return (
     <InputComponent>
       <Input
-        placeholder={inputValue}
+        value={inpValue}
+        disabled={disabled}
+        placeholder={inputPlaceholder}
         type={typeInp}
         onChange={e => setValue(e.target.value)}
       />

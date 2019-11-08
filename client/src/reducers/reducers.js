@@ -1,15 +1,16 @@
 import * as CONSTANT from "../constant";
 export const initialState = {
-  userName: ""
+  userName: "",
+  userData: {}
 };
 
 export function rootReduser(state = initialState, action) {
   switch (action.type) {
-    case CONSTANT.USER_NAME:
+    case CONSTANT.USER_DATA:
       return {
         ...state,
-        userName: action.payload
-      };
+        userData: action.payload
+      }
     default:
       return state;
   }

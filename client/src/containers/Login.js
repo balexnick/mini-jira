@@ -7,7 +7,8 @@ import loginImg from "../assets/login.png";
 import { login } from "../actions/actions";
 import CustomInput from "../common/CustomInput";
 import CustomButton from "../common/CustomButton";
-import AuthWindow from "../components/AuthWindow";
+import AuthWindow from "../components/auth/AuthWindow";
+import { RedirectToPage } from '../common/Styled/index'
 
 class Login extends Component {
   state = {
@@ -24,19 +25,24 @@ class Login extends Component {
   };
   render() {
     return (
-      <AuthWindow name="registerShow" image={loginImg} text="Sign in">
+      <AuthWindow name="showWindowLeft" image={loginImg} text="Sign in">
         <CustomInput
-          inputValue="Email"
+          inputPlaceholder="Email"
           typeInp="email"
           setValue={val => this.setState({ email: val })}
         />
         <CustomInput
-          inputValue="Password"
+          inputPlaceholder="Password"
           typeInp="password"
           setValue={val => this.setState({ password: val })}
         />
         <Buttons>
-          <CustomButton text="Sign in" setClick={this.singIn} />
+          <CustomButton
+            text="Sign in"
+            bgColor={'transparent'}
+            brColor={'1px solid #f27059'}
+            textColor={'#f27059'}
+            setClick={this.singIn} />
           <RedirectToPage onClick={() => browserHistory.push("/signUp")}>
             Sign up
           </RedirectToPage>
@@ -58,13 +64,7 @@ export default connect(
   mapDispatchToProps
 )(Login);
 
-const RedirectToPage = styled.div`
-  margin: 0;
-  cursor: pointer;
-  color: #7e7efa;
-  text-decoration: 1;
-  padding: 0 25px;
-`;
+
 const Buttons = styled.div`
   width: 100%;
   display: flex;

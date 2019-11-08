@@ -6,13 +6,15 @@ const jwtToken = require("../utils/jwtToken").verifyToken;
 
 router.post("/register", UserController.register);
 
-router.post("/find", UserController.findCurrent);
+router.post("/find", jwtToken, UserController.findCurrent);
 
 router.get("/allUsers", UserController.allUsers);
 
 router.post("/login", UserController.login);
 
-router.get("/tasks", TasksController.all);
+router.post("/editUser", jwtToken, UserController.editUser);
+
+router.get("/tasks", jwtToken, TasksController.all);
 
 router.post("/create", jwtToken, TasksController.create);
 
