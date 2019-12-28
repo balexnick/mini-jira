@@ -13,6 +13,10 @@ const AllTasks = new Schema({
   date: {
     type: String,
     required: true
+  },
+  status: {
+    type: String,
+    required: false
   }
 });
 

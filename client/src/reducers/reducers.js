@@ -7,9 +7,11 @@ export const initialState = {
 export function rootReduser(state = initialState, action) {
   switch (action.type) {
     case CONSTANT.USER_DATA:
+      const { _id, name, email, password } = action.payload
+      const data = { name, email, password, id: _id }
       return {
         ...state,
-        userData: action.payload
+        userData: data
       }
     default:
       return state;

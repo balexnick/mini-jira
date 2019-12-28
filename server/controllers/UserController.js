@@ -43,17 +43,22 @@ const findCurrent = async (req, res) => {
 
 const editUser = (req, res) => {
   const data = req.body;
+  const { name, email, password, id } = req.body
+  console.log(data)
   Joi.validate(data, updateUserData, async (err, value) => {
     if (err) {
-      return res.status(500).json({ message: err.details });
+      return res.status(500).json({ error: err.details[0] });
     } else {
-      const hasEmail = await User.findOne({ email: req.body.email });
+      const hasEmail = await User.findOne({ email: data.email });
       const equalEmail = await User.findOne({ _id: data.id });
       if (equalEmail.email === data.email || !hasEmail) {
         await User.updateOne({ _id: data.id }, data);
         res.status(200).json({
           status: "success",
-          data
+          message: "Your data has changed",
+          data: {
+            name, email, password, _id: id
+          }
         });
       } else if (hasEmail) {
         return res

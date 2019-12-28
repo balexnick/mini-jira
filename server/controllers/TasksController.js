@@ -3,13 +3,15 @@ const Joi = require("joi");
 const createNewTask = {
   title: Joi.string().required(),
   description: Joi.string().required(),
-  date: Joi.string().required()
+  date: Joi.string().required(),
+  status: Joi.string()
 };
 const updateTask = {
   id: Joi.string().required(),
   title: Joi.string().required(),
   description: Joi.string().required(),
-  date: Joi.string().required()
+  date: Joi.string().required(),
+  status: Joi.string()
 };
 
 const all = (req, res) => {
@@ -24,10 +26,10 @@ const create = (req, res) => {
     if (err) {
       return res.status(422).json({ error: err.details });
     } else {
-      Tasks.create(req.body);
+      Tasks.create(data);
       res.status(201).json({
         status: "success",
-        message: 'Task successfully created'
+        message: "Task successfully created"
       });
     }
   });
