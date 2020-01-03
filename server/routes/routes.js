@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const TasksController = require("../controllers/TasksController");
-const UserController = require("../controllers/UserController");
+const { register, findCurrent, allUsers, login, editUser } = require("../controllers/UserController");
 const jwtToken = require("../utils/jwtToken").verifyToken;
 
-router.post("/register", UserController.register);
+router.post("/register", register);
 
-router.post("/find", jwtToken, UserController.findCurrent);
+router.post("/find", jwtToken, findCurrent);
 
-router.get("/allUsers", UserController.allUsers);
+router.get("/allUsers", allUsers);
 
-router.post("/login", UserController.login);
+router.post("/login", login);
 
-router.post("/editUser", jwtToken, UserController.editUser);
+router.post("/editUser", jwtToken, editUser);
 
 router.get("/tasks", jwtToken, TasksController.all);
 

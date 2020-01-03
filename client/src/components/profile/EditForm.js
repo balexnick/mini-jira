@@ -8,7 +8,7 @@ import { browserHistory } from "../../index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
-class Test extends Component {
+class EditForm extends Component {
   constructor(props) {
     super(props);
     const { name, email, password, id } = props.testData;
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Test);
+export default connect(null, mapDispatchToProps)(EditForm);
 
 const Subm = styled.div`
   padding-top: 20px;

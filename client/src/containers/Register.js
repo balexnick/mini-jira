@@ -16,7 +16,8 @@ class Register extends Component {
     email: "",
     password: ""
   };
-  signUp = () => {
+  signUp = (e) => {
+    e.preventDefault();
     const { name, email, password } = this.state;
     const data = {
       name,
@@ -28,32 +29,34 @@ class Register extends Component {
   render() {
     return (
       <AuthWindow name="showWindowRight" image={registerImg} text="Sign Up">
-        <CustomInput
-          inputPlaceholder="Name"
-          typeInp="text"
-          setValue={val => this.setState({ name: val })}
-        />
-        <CustomInput
-          inputPlaceholder="Email"
-          typeInp="email"
-          setValue={val => this.setState({ email: val })}
-        />
-        <CustomInput
-          inputPlaceholder="Password"
-          typeInp="password"
-          setValue={val => this.setState({ password: val })}
-        />
-        <Buttons>
-          <CustomButton
-            text="Sign up"
-            bgColor={'transparent'}
-            brColor={'1px solid #f27059'}
-            textColor={'#f27059'}
-            setClick={this.signUp} />
-          <RedirectToPage onClick={() => browserHistory.push("/signIn")}>
-            Sing in
+        <form action="">
+          <CustomInput
+            inputPlaceholder="Name"
+            typeInp="text"
+            setValue={val => this.setState({ name: val })}
+          />
+          <CustomInput
+            inputPlaceholder="Email"
+            typeInp="email"
+            setValue={val => this.setState({ email: val })}
+          />
+          <CustomInput
+            inputPlaceholder="Password"
+            typeInp="password"
+            setValue={val => this.setState({ password: val })}
+          />
+          <Buttons>
+            <CustomButton
+              text="Sign up"
+              bgColor={'transparent'}
+              brColor={'1px solid #f27059'}
+              textColor={'#f27059'}
+              setClick={this.signUp} />
+            <RedirectToPage onClick={() => browserHistory.push("/signIn")}>
+              Sing in
           </RedirectToPage>
-        </Buttons>
+          </Buttons>
+        </form>
       </AuthWindow>
     );
   }

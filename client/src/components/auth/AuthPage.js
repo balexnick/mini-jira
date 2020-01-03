@@ -15,7 +15,7 @@ const AuthPage = ({ children }) => {
 export default AuthPage;
 
 AuthPage.propTupes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.object.isRequired
 }
 
 const AppContainer = styled.div`

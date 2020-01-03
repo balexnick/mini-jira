@@ -2,7 +2,9 @@ const express = require("express");
 const routes = require("./routes/routes");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-require("dotenv").config({ path: ".env" });
+require("dotenv").config({
+  path: ".env"
+});
 const app = express();
 const hostname = "127.0.0.1";
 mongoose.connect(process.env.DATABASE, {
@@ -12,7 +14,9 @@ mongoose.connect(process.env.DATABASE, {
 });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader(

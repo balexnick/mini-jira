@@ -18,7 +18,7 @@ const AuthWindow = ({ children, image, text, name }) => {
 export default AuthWindow;
 
 AuthWindow.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object.isRequired,
   image: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

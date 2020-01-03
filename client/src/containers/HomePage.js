@@ -11,7 +11,6 @@ import { ToastContainer } from "react-toastify";
 import EditProfile from "../components/profile/EditProfile";
 import PropTypes from "prop-types";
 import UserProfile from "../components/profile/UserProfile";
-import UserPicture from "../assets/profile-photo.png";
 
 const USER_TASKS = "/myTasks";
 const ADD_TASK = "/addTask";
@@ -30,12 +29,13 @@ const HomePage = ({ userData, currentUser, match }) => {
     [EDIT_PROFILE]: <EditProfile />
   };
   React.useEffect(() => currentUser(), []);
+  console.log(userData.name)
+
   return (
     <div>
       <HeaderContainer>
         <HeaderContent>
           <Title>
-            <Img src={UserPicture} alt="logo" />
             {userData.name}
           </Title>
           <CustomButton
@@ -107,10 +107,4 @@ const HeaderContent = styled.div`
   align-items: center;
   width: 85vw;
   margin: 0 auto;
-`;
-const Img = styled.img`
-  height: 30px;
-  border: 2px solid #4c4c4d;
-  border-radius: 50%;
-  margin-right: 10px;
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-const CustomButton = ({ text, setClick, white, isActive, bgColor, brColor, textColor }) => {
+const CustomButton = ({ text, setClick, white, isActive, bgColor, brColor, textColor, type }) => {
   return (
     <Button
       white={white && white}
@@ -10,6 +10,7 @@ const CustomButton = ({ text, setClick, white, isActive, bgColor, brColor, textC
       bgColor={bgColor}
       brColor={brColor}
       textColor={textColor}
+      type={type}
     >
       {text}
     </Button>

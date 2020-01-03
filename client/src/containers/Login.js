@@ -15,7 +15,8 @@ class Login extends Component {
     email: "",
     password: ""
   };
-  singIn = () => {
+  singIn = (e) => {
+    e.preventDefault();
     const { email, password } = this.state;
     const data = {
       email,
@@ -26,27 +27,30 @@ class Login extends Component {
   render() {
     return (
       <AuthWindow name="showWindowLeft" image={loginImg} text="Sign in">
-        <CustomInput
-          inputPlaceholder="Email"
-          typeInp="email"
-          setValue={val => this.setState({ email: val })}
-        />
-        <CustomInput
-          inputPlaceholder="Password"
-          typeInp="password"
-          setValue={val => this.setState({ password: val })}
-        />
-        <Buttons>
-          <CustomButton
-            text="Sign in"
-            bgColor={'transparent'}
-            brColor={'1px solid #f27059'}
-            textColor={'#f27059'}
-            setClick={this.singIn} />
-          <RedirectToPage onClick={() => browserHistory.push("/signUp")}>
-            Sign up
+        <form action="">
+          <CustomInput
+            inputPlaceholder="Email"
+            typeInp="email"
+            setValue={val => this.setState({ email: val })}
+          />
+          <CustomInput
+            inputPlaceholder="Password"
+            typeInp="password"
+            setValue={val => this.setState({ password: val })}
+          />
+          <Buttons>
+            <CustomButton
+              text="Sign in"
+              bgColor={'transparent'}
+              brColor={'1px solid #f27059'}
+              textColor={'#f27059'}
+              setClick={this.singIn}
+              type='submit' />
+            <RedirectToPage onClick={() => browserHistory.push("/signUp")}>
+              Sign up
           </RedirectToPage>
-        </Buttons>
+          </Buttons>
+        </form>
       </AuthWindow>
     );
   }
@@ -54,15 +58,12 @@ class Login extends Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    login: data => dispatch(login(data))
-  };
-};
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     : data => dispatch(login(data))
+//   };
+// };
+export default connect(null, { login })(Login);
 
 
 const Buttons = styled.div`
