@@ -1,35 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import UserPicture from "../../assets/profile-photo.png";
 import { CustomWindow } from "../../common/Styled/index";
 import { browserHistory } from "../../index";
 import { RedirectToPage } from "../../common/Styled/index";
 import PropTypes from "prop-types";
-import { currentUser } from "../../actions/actions";
+// import { currentUser } from "../../actions/actions";
 import { encryptPassword } from "../../utils/encript";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = ({ userData }) => {
+  const { name, email, password } = userData
   const [visable, setVisable] = React.useState(false);
   const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
   const eye = <FontAwesomeIcon icon={faEye} />;
   return (
     <ProfilePage>
-      <CustomWindow className="showWindowLeft" jusCont="flex-start">
-        <Img src={UserPicture} alt="logo" />
+      <CustomWindow>
+        <UserAvatar>
+          {name && name[0].toUpperCase()}
+        </UserAvatar>
         <UserInformation>
           <TitleNameEmail>
-            <Val>Name:</Val> {userData.name}
+            <Val>Name:</Val> {name}
           </TitleNameEmail>
           <TitleNameEmail>
-            <Val>Email:</Val> {userData.email}
+            <Val>Email:</Val> {email}
           </TitleNameEmail>
           <UserPassword>
             <Val>Password:</Val>
             <PasswordContainer>
-              {visable ? userData.password : encryptPassword(userData.password)}
+              {visable ? password : encryptPassword(password)}
               <ShowPassword onClick={() => setVisable(!visable)}>
                 {visable ? eye : eyeSlash}
               </ShowPassword>
@@ -37,7 +39,7 @@ const UserProfile = ({ userData }) => {
           </UserPassword>
           <RedirectToPage
             alignSelf="flex-end"
-            onClick={() => browserHistory.push("/editProfile")}
+            onClick={() => browserHistory.push("/edit-your-profile")}
           >
             Edit profile
           </RedirectToPage>
@@ -53,20 +55,29 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, { currentUser })(UserProfile);
+export default connect(mapStateToProps, null)(UserProfile);
 
 UserProfile.propTypes = {
   userData: PropTypes.object.isRequired
 };
 
-const ProfilePage = styled.div`
-  padding-top: 10%;
+const UserAvatar = styled.div`
+  height: 132px;
+  width: 132px;
+  border-radius: 50%;
+  background: #00a4be;
+  color: #182d51;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 70px;
 `;
 
-const Img = styled.img`
-  height: 200px;
-  border: 5px solid #989796;
-  border-radius: 50%;
+const ProfilePage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const UserInformation = styled.div`

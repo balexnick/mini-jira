@@ -54,7 +54,7 @@ class EditForm extends Component {
             bgColor={"transparent"}
             brColor={"1px solid #ff5252"}
             textColor={"#ff5252"}
-            setClick={() => browserHistory.push("/myProfile")}
+            setClick={() => browserHistory.push("/your-profile")}
           />
           <CustomButton
             text="Save"
@@ -69,13 +69,7 @@ class EditForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editUser: data => dispatch(editUser(data))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(EditForm);
+export default connect(null, { editUser })(EditForm);
 
 const Subm = styled.div`
   padding-top: 20px;
@@ -87,7 +81,7 @@ const Password = styled.div`
 `;
 const ShowPassword = styled.div`
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 50%;
   transform: translate(0, -50%);
   cursor: pointer;

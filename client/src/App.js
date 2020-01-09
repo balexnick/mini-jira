@@ -27,11 +27,13 @@ class App extends Component {
         <Route path='/signIn' render={() => this.notAuth(<Login />)} />
         <Route path='/signUp' render={() => this.notAuth(<Register />)} />
         <Route path='/logout' render={() => this.isAuth(<Logout />)} />
-        <Route path='/myProfile' render={() => this.isAuth(<HomePage />)} />
-        <Route path='/editProfile' render={() => this.isAuth(<HomePage />)} />
-        <Route path='/addTask' render={() => this.isAuth(<HomePage />)} />
-        <Route path='/myTasks' render={() => this.isAuth(<HomePage />)} />
-        <Route path='/' render={() => this.isAuth(<Redirect to='/myTasks' />)} />
+        <Route path='/your-profile' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/edit-your-profile' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/your-work' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/dashboard' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/users' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/all-tasks' render={() => this.isAuth(<HomePage />)} />
+        <Route path='/' render={() => this.isAuth(<Redirect to='/your-work' />)} />
       </Switch>
     );
   }

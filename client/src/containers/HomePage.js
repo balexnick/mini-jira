@@ -2,78 +2,89 @@ import React from "react";
 import { browserHistory } from "../index";
 import { connect } from "react-redux";
 import { currentUser } from "../actions/actions";
-import CustomButton from "../common/CustomButton";
-import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import AddTask from "../components/tasks/AddTask";
-import UserTasks from "../components/tasks/UserTasks";
 import { ToastContainer } from "react-toastify";
-import EditProfile from "../components/profile/EditProfile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTasks, faColumns, faUsers, faListAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 import PropTypes from "prop-types";
+
+import EditProfile from "../components/profile/EditProfile";
 import UserProfile from "../components/profile/UserProfile";
+import NavbarButton from "../common/NavbarButton";
+import UserWork from "../components/user-tasks/UserWork"
+import Dashboard from "../components/dashboard/Dashboard"
+import Users from "../components/users/Users"
+import AllTasks from "../components/all-tasks/AllTasks"
 
-const USER_TASKS = "/myTasks";
-const ADD_TASK = "/addTask";
-const USER_PROFILE = "/myProfile";
-const USER_EDIT = "/editProfile";
-const EDIT_PROFILE = "/editProfile";
+const USER_WORK = '/your-work'
+const DASHBOARD = "/dashboard";
+const USERS = "/users";
+const ALL_TASKS = "/all-tasks";
+const USER_PROFILE = "/your-profile";
+const USER_EDIT = "/edit-your-profile";
 
-const CONTENT_LIST = [ADD_TASK, USER_TASKS, USER_PROFILE, EDIT_PROFILE];
+const CONTENT_LIST = [USER_WORK, DASHBOARD, USERS, ALL_TASKS, USER_PROFILE, USER_EDIT];
 
-const HomePage = ({ userData, currentUser, match }) => {
+const HomePage = ({ currentUser, match }) => {
   const hasContent = CONTENT_LIST.includes(match.url);
   const content = {
-    [USER_TASKS]: <UserTasks />,
-    [ADD_TASK]: <AddTask />,
+    [USER_WORK]: <UserWork />,
+    [DASHBOARD]: <Dashboard />,
+    [USERS]: <Users />,
+    [ALL_TASKS]: <AllTasks />,
     [USER_PROFILE]: <UserProfile />,
-    [EDIT_PROFILE]: <EditProfile />
+    [USER_EDIT]: <EditProfile />
   };
   React.useEffect(() => currentUser(), []);
-  console.log(userData.name)
-
   return (
-    <div>
-      <HeaderContainer>
-        <HeaderContent>
-          <Title>
-            {userData.name}
-          </Title>
-          <CustomButton
-            text="My Tasks"
-            bgColor={"transparent"}
-            brColor={"1px solid transparent"}
-            textColor={"#eee"}
-            isActive={match.url === USER_TASKS}
-            setClick={() => browserHistory.push("/myTasks")}
-          />
-          <CustomButton
-            text="Add"
-            bgColor={"transparent"}
-            brColor={"1px solid transparent"}
-            textColor={"#eee"}
-            isActive={match.url === ADD_TASK}
-            setClick={() => browserHistory.push("/addTask")}
-          />
-          <CustomButton
-            text="My Progile"
-            bgColor={"transparent"}
-            brColor={"1px solid transparent"}
-            textColor={"#eee"}
+    <UserHomePage>
+      <NavberContainer>
+        <NavbarContent>
+          <NavbarButton
+            text="Your work"
+            isActive={match.url === USER_WORK}
+            setClick={() => browserHistory.push("/your-work")}
+          >
+            <FontAwesomeIcon icon={faTasks} />
+          </NavbarButton>
+          <NavbarButton
+            text="Dashboard"
+            isActive={match.url === DASHBOARD}
+            setClick={() => browserHistory.push("/dashboard")}
+          >
+            <FontAwesomeIcon icon={faColumns} />
+          </NavbarButton>
+          <NavbarButton
+            text="Users"
+            isActive={match.url === USERS}
+            setClick={() => browserHistory.push("/users")}
+          >
+            <FontAwesomeIcon icon={faUsers} />
+          </NavbarButton>
+          <NavbarButton
+            text="All tasks"
+            isActive={match.url === ALL_TASKS}
+            setClick={() => browserHistory.push("/all-tasks")}
+          >
+            <FontAwesomeIcon icon={faListAlt} />
+          </NavbarButton>
+          <NavbarButton
+            text="My Profile"
             isActive={match.url === USER_PROFILE || match.url === USER_EDIT}
-            setClick={() => browserHistory.push("/myProfile")}
-          />
-          <CustomButton
-            text="logout"
-            bgColor={"transparent"}
-            brColor={"1px solid #ff5252"}
-            textColor={"#ff5252"}
-            setClick={() => browserHistory.push("/logout")}
-          />
-        </HeaderContent>
-      </HeaderContainer>
+            setClick={() => browserHistory.push("/your-profile")}
+          >
+            <FontAwesomeIcon icon={faUser} />
+          </NavbarButton>
+        </NavbarContent>
+        <NavbarButton
+          text="logout"
+          setClick={() => browserHistory.push("/logout")}
+        />
+      </NavberContainer>
       {hasContent && content[match.url]}
       <ToastContainer autoClose={2000} />
-    </div>
+    </UserHomePage >
   );
 };
 const mapStateToProps = store => {
@@ -89,22 +100,19 @@ HomePage.propTypes = {
   currentUser: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };
-
-const Title = styled.h1`
-  color: #e5e5e5;
+const UserHomePage = styled.div`
   display: flex;
-  align-items: center;
-  font-size: 18px;
+  justify-content: space-between;
+`
+const NavbarContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
-const HeaderContainer = styled.div`
-  background: #24292e;
-  padding: 25px 0;
+const NavberContainer = styled(NavbarContent)`
+  background: #0747a6;
+  height: 100vh;
+  justify-content: space-between
 `;
-const HeaderContent = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 85vw;
-  margin: 0 auto;
-`;
+

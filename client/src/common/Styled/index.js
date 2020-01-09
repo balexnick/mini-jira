@@ -4,7 +4,7 @@ export const CustomWindow = styled.div`
   width: 50vw;
   background: #f7f7f7;
   display: flex;
-  justify-content: ${({ jusCont }) => (jusCont ? jusCont : "space-between")};
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   padding: 55px;

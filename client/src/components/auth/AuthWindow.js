@@ -33,11 +33,8 @@ const AuthForm = styled.div`
   }
 `;
 const Img = styled.img`
-  height: 315px;
+  height: 270px;
   @media (max-width: 810px) {
     height: 250px;
-  }
-  @media (max-width: 650px) {
-    /* height: 200px; */
   }
 `;
