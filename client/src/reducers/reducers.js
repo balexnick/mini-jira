@@ -1,7 +1,7 @@
 import * as CONSTANT from "../constant";
 export const initialState = {
-  userName: "",
-  userData: {}
+  [CONSTANT.USER_DATA]: {},
+  [CONSTANT.LOADER]: false
 };
 
 export function rootReduser(state = initialState, action) {
@@ -11,8 +11,14 @@ export function rootReduser(state = initialState, action) {
       const data = { name, email, password, id: _id }
       return {
         ...state,
-        userData: data
+        [CONSTANT.USER_DATA]: data
       }
+    case CONSTANT.LOADER: {
+      return{
+        ...state,
+        [CONSTANT.LOADER]: action.payload
+      }
+    }  
     default:
       return state;
   }

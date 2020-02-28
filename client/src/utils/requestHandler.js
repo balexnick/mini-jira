@@ -1,8 +1,12 @@
 import axios from "axios";
 import qs from "qs";
 import cookies from 'js-cookie'
+import * as CONSTANT from "../constant";
+import { toast } from "react-toastify";
+import { store } from '../index'
 
-export const requestHandler = options => {
+
+export const requestHandler = ({options, cb, failCb}) => {
   const token = cookies.get("token");
 
   let axiosOptions = {
@@ -27,5 +31,19 @@ export const requestHandler = options => {
     default:
       break;
   }
-  return axios(axiosOptions);
+  store.dispatch({ type: CONSTANT.LOADER, payload: true })
+  return axios(axiosOptions)
+    .then(res => {
+      if (typeof cb === 'function') cb(res)
+      store.dispatch({ type: CONSTANT.LOADER, payload: false })
+    })
+    .catch(function (err) {
+      if (err.response && err.response.data.error.message) {
+        toast.error(err.response.data.error.message);
+      }
+      // toast.error(err.response.data.message);
+
+      if (typeof failCb === 'function') failCb(err)
+      store.dispatch({ type: CONSTANT.LOADER, payload: false })
+    })
 };

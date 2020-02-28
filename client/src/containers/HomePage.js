@@ -1,14 +1,11 @@
 import React from "react";
 import { browserHistory } from "../index";
-import { connect } from "react-redux";
-import { currentUser } from "../actions/actions";
 import { withRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTasks, faColumns, faUsers, faListAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
 import EditProfile from "../components/profile/EditProfile";
 import UserProfile from "../components/profile/UserProfile";
 import NavbarButton from "../common/NavbarButton";
@@ -26,7 +23,7 @@ const USER_EDIT = "/edit-your-profile";
 
 const CONTENT_LIST = [USER_WORK, DASHBOARD, USERS, ALL_TASKS, USER_PROFILE, USER_EDIT];
 
-const HomePage = ({ currentUser, match }) => {
+const HomePage = ({match }) => {
   const hasContent = CONTENT_LIST.includes(match.url);
   const content = {
     [USER_WORK]: <UserWork />,
@@ -36,7 +33,6 @@ const HomePage = ({ currentUser, match }) => {
     [USER_PROFILE]: <UserProfile />,
     [USER_EDIT]: <EditProfile />
   };
-  React.useEffect(() => currentUser(), []);
   return (
     <UserHomePage>
       <NavberContainer>
@@ -87,17 +83,10 @@ const HomePage = ({ currentUser, match }) => {
     </UserHomePage >
   );
 };
-const mapStateToProps = store => {
-  return {
-    userData: store.userData
-  };
-};
 
-export default withRouter(connect(mapStateToProps, { currentUser })(HomePage));
+export default withRouter(HomePage);
 
 HomePage.propTypes = {
-  userData: PropTypes.object.isRequired,
-  currentUser: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };
 const UserHomePage = styled.div`

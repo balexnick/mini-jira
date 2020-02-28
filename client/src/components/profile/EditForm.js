@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CustomInput from "../../common/CustomInput";
 import CustomButton from "../../common/CustomButton";
 import { connect } from "react-redux";
-import { editUser } from "../../actions/actions";
+import { editUser } from "../../actions/editUser";
 import styled from "styled-components";
 import { browserHistory } from "../../index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

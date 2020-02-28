@@ -18,7 +18,7 @@ export default NavbarButton;
 NavbarButton.propTypes = {
   text: PropTypes.string.isRequired,
   setClick: PropTypes.func.isRequired,
-  children: PropTypes.object.isRequired
+  // children: PropTypes.object.isRequired
 };
 
 const NavbarBtn = styled.button`

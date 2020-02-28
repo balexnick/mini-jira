@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import registerImg from '../assets/register.png';
-import { register } from '../actions/actions';
+import { register } from '../actions/register';
 import CustomInput from '../common/CustomInput';
 import CustomButton from '../common/CustomButton';
 import AuthWindow from '../components/auth/AuthWindow';

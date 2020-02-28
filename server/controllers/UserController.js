@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const createToken = require("../utils/jwtToken").createToken;
 const Joi = require("joi");
-const bCrypt = require("bcrypt").compare;
+const bCrypt = require("bcrypt");
 const validateEmail = require("../utils/authValidation").validateEmail;
 const validateMessage = require("../utils/authValidation").validateMessage;
 
@@ -57,6 +57,10 @@ const editUser = (req, res) => {
     }
     const hasEmail = await User.findOne({ email: data.email });
     const equalEmail = await User.findOne({ _id: data.id });
+
+    let salt = bCrypt.genSaltSync(5);
+    let hash = bCrypt.hashSync(data.password, salt)
+    data.password = hash
     if (equalEmail.email === data.email || !hasEmail) {
       await User.updateOne({ _id: data.id }, data);
       res.status(200).json({
@@ -86,12 +90,13 @@ const login = (req, res) => {
       res.status(500).json({ error: { message: "Email must be valid" } });
       return null
     }
-    await User.find({ email }, (err, user) => {
+    await User.find({ email }, async (err, user) => {
+      const match = await bCrypt.compare(password, user[0].password);
       if (user.length === 0) {
         res
           .status(401)
           .json({ error: { message: "User does not exist!" } });
-      } else if (password === user[0].password) {
+      } else if (match) {
         res.status(200).json({
           token: createToken({ id: user[0]._id }),
           id: user[0]._id,
@@ -109,11 +114,16 @@ const register = (req, res) => {
   const data = req.body;
   const { name, email, password } = req.body;
   Joi.validate(data, registerSchema, async (err) => {
+    if(password.length < 6){
+      res.status(500).json({ error: { message: `Password no less than symbols` } });
+    }
     if (err) {
       const str = err.details[0].path[0]
       res.status(500).json({ error: { message: `${validateMessage(str)} is required` } });
       return null
     }
+
+  
     if (!validateEmail(email)) {
       res.status(500).json({ error: { message: "Email must be valid" } });
       return null
@@ -126,11 +136,13 @@ const register = (req, res) => {
           .json({ error: { message: "User already exsist" } });
       }
     });
-
+      
+    let salt = bCrypt.genSaltSync(5);
+    let hash = bCrypt.hashSync(password, salt)
     const newUser = new User({
       name,
       email,
-      password
+      password: hash
     });
     await newUser.save();
     return res.status(200).json({

@@ -3,6 +3,8 @@ import { CustomWindow } from "../../common/Styled/index";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import EditForm from "./EditForm";
+import * as CONSTANT from '../../constant'
+
 class EditProfile extends Component {
   render() {
     const { name } = this.props.userData;
@@ -22,9 +24,8 @@ class EditProfile extends Component {
 }
 
 const mapStateToProps = store => {
-  return {
-    userData: store.userData
-  };
+  let userData = store[CONSTANT.USER_DATA]
+  return {userData}
 };
 
 export default connect(mapStateToProps, null)(EditProfile);

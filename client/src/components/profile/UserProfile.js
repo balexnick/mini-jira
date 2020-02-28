@@ -5,12 +5,16 @@ import { CustomWindow } from "../../common/Styled/index";
 import { browserHistory } from "../../index";
 import { RedirectToPage } from "../../common/Styled/index";
 import PropTypes from "prop-types";
-// import { currentUser } from "../../actions/actions";
+import * as CONSTANT from '../../constant'
+import { currentUser } from "../../actions/authUser";
 import { encryptPassword } from "../../utils/encript";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
-const UserProfile = ({ userData }) => {
+const UserProfile = ({ userData, fetchCurrentUser }) => {
+  React.useEffect(() => {
+    fetchCurrentUser()
+  }, [])
   const { name, email, password } = userData
   const [visable, setVisable] = React.useState(false);
   const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -50,12 +54,17 @@ const UserProfile = ({ userData }) => {
 };
 
 const mapStateToProps = store => {
-  return {
-    userData: store.userData
-  };
+  let userData = store[CONSTANT.USER_DATA]
+  return {userData}
 };
 
-export default connect(mapStateToProps, null)(UserProfile);
+const napDispatchToProps = dispatch => {
+  return{
+    fetchCurrentUser: () => dispatch(currentUser())
+  }
+}
+
+export default connect(mapStateToProps, napDispatchToProps)(UserProfile);
 
 UserProfile.propTypes = {
   userData: PropTypes.object.isRequired

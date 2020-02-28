@@ -4,6 +4,7 @@ import Login from "./containers/Login";
 import HomePage from "./containers/HomePage";
 import Logout from "./containers/Logout";
 import cookies from 'js-cookie'
+import Loader from './common/Loader'
 
 import Register from "./containers/Register";
 import AuthPage from "./components/auth/AuthPage";
@@ -13,13 +14,22 @@ class App extends Component {
   isAuth = component => {
     const token = cookies.get("token");
     if (!token) return <Redirect to="/signIn" />;
-    return component;
+    return (
+      <div>
+        {component}
+        <Loader/>
+      </div>
+    );
   };
 
   notAuth = component => {
     const token = cookies.get("token");
     if (token) return <Redirect to="/" />;
-    return <AuthPage>{component}</AuthPage>;
+    return ( 
+      <AuthPage>{component}
+        <Loader/>
+      </AuthPage>
+    )
   };
   render() {
     return (
