@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router";
-import Login from "./containers/Login";
-import HomePage from "./containers/HomePage";
-import Logout from "./containers/Logout";
-import cookies from 'js-cookie'
-import Loader from './common/Loader'
-
-import Register from "./containers/Register";
-import AuthPage from "./components/auth/AuthPage";
+import Login from "containers/Login";
+import HomePage from "containers/HomePage";
+import Logout from "containers/Logout";
+// import cookies from 'js-cookie'
+import Loader from 'common/Loader'
+import Register from "containers/Register";
+import AuthPage from "components/auth/AuthPage";
 
 class App extends Component {
   state = {};
   isAuth = component => {
-    const token = cookies.get("token");
+    // const token = cookies.get("token");
+    const token = localStorage.getItem('token')
     if (!token) return <Redirect to="/signIn" />;
     return (
       <div>
@@ -23,7 +23,8 @@ class App extends Component {
   };
 
   notAuth = component => {
-    const token = cookies.get("token");
+    // const token = cookies.get("token");
+    const token = localStorage.getItem('token')
     if (token) return <Redirect to="/" />;
     return ( 
       <AuthPage>{component}

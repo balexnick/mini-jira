@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { CustomWindow } from "../../common/Styled/index";
+import { CustomWindow } from "common/Styled/index";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import EditForm from "./EditForm";
-import * as CONSTANT from '../../constant'
+import * as CONSTANT from 'constant'
 
 class EditProfile extends Component {
   render() {

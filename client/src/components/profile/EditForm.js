@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import CustomInput from "../../common/CustomInput";
-import CustomButton from "../../common/CustomButton";
+import CustomInput from "common/CustomInput";
+import CustomButton from "common/CustomButton";
 import { connect } from "react-redux";
-import { editUser } from "../../actions/editUser";
+import { editUser } from "actions/edit-user";
 import styled from "styled-components";
-import { browserHistory } from "../../index";
+import { browserHistory } from "index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 

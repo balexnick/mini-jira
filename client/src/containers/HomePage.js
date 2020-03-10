@@ -1,18 +1,18 @@
 import React from "react";
-import { browserHistory } from "../index";
+import { browserHistory } from "index";
 import { withRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTasks, faColumns, faUsers, faListAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import EditProfile from "../components/profile/EditProfile";
-import UserProfile from "../components/profile/UserProfile";
-import NavbarButton from "../common/NavbarButton";
-import UserWork from "../components/user-tasks/UserWork"
-import Dashboard from "../components/dashboard/Dashboard"
-import Users from "../components/users/Users"
-import AllTasks from "../components/all-tasks/AllTasks"
+import EditProfile from "components/profile/EditProfile";
+import UserProfile from "components/profile/UserProfile";
+import NavbarButton from "common/NavbarButton";
+import UserWork from "components/user-tasks/UserWork"
+import Dashboard from "components/dashboard/Dashboard"
+import Users from "components/users/Users"
+import AllTasks from "components/all-tasks/AllTasks"
 
 const USER_WORK = '/your-work'
 const DASHBOARD = "/dashboard";
@@ -91,7 +91,7 @@ HomePage.propTypes = {
 };
 const UserHomePage = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `
 const NavbarContent = styled.div`
   display: flex;
@@ -102,6 +102,6 @@ const NavbarContent = styled.div`
 const NavberContainer = styled(NavbarContent)`
   background: #0747a6;
   height: 100vh;
-  justify-content: space-between
+  justify-content: space-between;
+  padding: 0 15px;
 `;
-

@@ -1,7 +1,9 @@
-import * as CONSTANT from "../constant";
+import * as CONSTANT from "constant";
 export const initialState = {
   [CONSTANT.USER_DATA]: {},
-  [CONSTANT.LOADER]: false
+  [CONSTANT.LOADER]: false,
+  [CONSTANT.ALL_TASKS]: [],
+  [CONSTANT.MODAL]: false
 };
 
 export function rootReduser(state = initialState, action) {
@@ -18,7 +20,19 @@ export function rootReduser(state = initialState, action) {
         ...state,
         [CONSTANT.LOADER]: action.payload
       }
-    }  
+    }
+    case CONSTANT.ALL_TASKS: {
+      return{
+        ...state,
+        [CONSTANT.ALL_TASKS]: action.payload
+      }
+    }
+    case CONSTANT.MODAL:{
+      return{
+        ...state,
+        [CONSTANT.MODAL]: action.payload
+      }
+    }
     default:
       return state;
   }

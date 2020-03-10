@@ -1,13 +1,14 @@
 import axios from "axios";
 import qs from "qs";
-import cookies from 'js-cookie'
-import * as CONSTANT from "../constant";
+// import cookies from 'js-cookie'
+import * as CONSTANT from "constant";
 import { toast } from "react-toastify";
-import { store } from '../index'
+import { store } from 'index'
 
 
 export const requestHandler = ({options, cb, failCb}) => {
-  const token = cookies.get("token");
+  // const token = cookies.get("token");
+  const token = localStorage.getItem("token");
 
   let axiosOptions = {
     url: process.env.REACT_APP_API_URL + options.url,
@@ -38,11 +39,10 @@ export const requestHandler = ({options, cb, failCb}) => {
       store.dispatch({ type: CONSTANT.LOADER, payload: false })
     })
     .catch(function (err) {
-      if (err.response && err.response.data.error.message) {
-        toast.error(err.response.data.error.message);
+      console.log(err.response)
+      if (err.response && err.response.data.message) {
+        toast.error(err.response.data.message);
       }
-      // toast.error(err.response.data.message);
-
       if (typeof failCb === 'function') failCb(err)
       store.dispatch({ type: CONSTANT.LOADER, payload: false })
     })

@@ -9,7 +9,7 @@ const NavbarButton = ({ text, setClick, isActive, style, children }) => {
       isActive={isActive}
     >
       {children}
-      {text}
+      <div>{text}</div>
     </NavbarBtn>
   );
 };
@@ -26,9 +26,14 @@ const NavbarBtn = styled.button`
   border: none;
   background: ${({ isActive }) => isActive ? '#06367e' : 'transparent'};
   font-size: 22px;
-  padding: 15px 60px;
+  padding: 15px 55px;
   color: #fff;
   cursor: pointer;
   width: 100%;
   display: flex;
+  border-radius: 5px;
+  transition: .2s;
+  &:hover{
+    background: ${({ isActive }) => isActive ? '#06367e' : '#1c12cf'};
+  }
 `;

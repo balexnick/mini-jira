@@ -1,20 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { CustomWindow } from "../../common/Styled/index";
-import { browserHistory } from "../../index";
-import { RedirectToPage } from "../../common/Styled/index";
+import { CustomWindow } from "common/Styled/index";
+import { browserHistory } from "index";
+import { RedirectToPage } from "common/Styled/index";
 import PropTypes from "prop-types";
-import * as CONSTANT from '../../constant'
-import { currentUser } from "../../actions/authUser";
-import { encryptPassword } from "../../utils/encript";
+import * as CONSTANT from 'constant'
+import { currentUser } from "actions/auth-user";
+import { encryptPassword } from "utils/encript";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = ({ userData, fetchCurrentUser }) => {
   React.useEffect(() => {
     fetchCurrentUser()
-  }, [])
+  },[fetchCurrentUser])
   const { name, email, password } = userData
   const [visable, setVisable] = React.useState(false);
   const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;

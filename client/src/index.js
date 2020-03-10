@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./index.css";
+import "index.css";
 import { createStore, applyMiddleware } from "redux";
-import { rootReduser } from "./reducers/reducers";
+import { rootReduser } from "reducers/reducers";
 // import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";

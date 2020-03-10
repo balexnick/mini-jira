@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { browserHistory } from "../index";
+import { browserHistory } from "index";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import loginImg from "../assets/login.png";
-import { login } from "../actions/login";
-import CustomInput from "../common/CustomInput";
-import CustomButton from "../common/CustomButton";
-import AuthWindow from "../components/auth/AuthWindow";
-import { RedirectToPage } from '../common/Styled/index'
+import loginImg from "assets/login.png";
+import { login } from "actions/login";
+import CustomInput from "common/CustomInput";
+import CustomButton from "common/CustomButton";
+import AuthWindow from "components/auth/AuthWindow";
+import { RedirectToPage } from 'common/Styled/index'
 
 class Login extends Component {
   state = {

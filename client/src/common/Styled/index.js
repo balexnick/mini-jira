@@ -29,3 +29,20 @@ export const RedirectToPage = styled.div`
   align-self: ${({ alignSelf }) => alignSelf};
   user-select: none;
 `;
+
+export const BodyContainer = styled.div`
+  width: 78vw;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-top: 10px;
+`
+
+
+export const CustomModalStyled = styled.div`
+  position: relative;
+  background: #f7f7f7;
+  padding: 35px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+`

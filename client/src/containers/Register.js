@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { browserHistory } from '../index';
+import { browserHistory } from 'index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import registerImg from '../assets/register.png';
-import { register } from '../actions/register';
-import CustomInput from '../common/CustomInput';
-import CustomButton from '../common/CustomButton';
-import AuthWindow from '../components/auth/AuthWindow';
-import { RedirectToPage } from '../common/Styled/index'
+import registerImg from 'assets/register.png';
+import { register } from 'actions/register';
+import CustomInput from 'common/CustomInput';
+import CustomButton from 'common/CustomButton';
+import AuthWindow from 'components/auth/AuthWindow';
+import { RedirectToPage } from 'common/Styled/index'
 
 class Register extends Component {
   state = {

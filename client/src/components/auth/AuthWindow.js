@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CustomWindow } from '../../common/Styled/index'
+import { CustomWindow } from 'common/Styled/index'
 import PropTypes from 'prop-types';
 
 const AuthWindow = ({ children, image, text, name }) => {
