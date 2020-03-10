@@ -38,7 +38,7 @@ const allUsers = (req, res) => {
 const findCurrent = async (req, res) => {
   const user = await User.find({ _id: req.body.id });
   if (!user)
-    return res.status(500).json({ error: { message: "user not found" } });
+    return res.status(500).json({ message: "user not found" });
   return res.status(200).json(user);
 };
 
@@ -48,11 +48,11 @@ const editUser = (req, res) => {
   Joi.validate(data, updateUserData, async (err, value) => {
     if (err) {
       const str = err.details[0].path[0]
-      res.status(500).json({ error: { message: `${validateMessage(str)} is required` } });
+      res.status(500).json({ message: `${validateMessage(str)} is required` });
       return null
     }
     if (!validateEmail(email)) {
-      res.status(500).json({ error: { message: "Email must be valid" } });
+      res.status(500).json({ message: "Email must be valid"});
       return null
     }
     const hasEmail = await User.findOne({ email: data.email });
@@ -73,7 +73,7 @@ const editUser = (req, res) => {
     } else if (hasEmail) {
       return res
         .status(409)
-        .json({ error: { message: "Email already exsist" } });
+        .json({ message: "Email already exsist" });
     }
   });
 }
@@ -83,11 +83,11 @@ const login = (req, res) => {
   Joi.validate(data, loginSchema, async (err, value) => {
     if (err) {
       const str = err.details[0].path[0]
-      res.status(500).json({ error: { message: `${validateMessage(str)} is required` } });
+      res.status(500).json({ message: `${validateMessage(str)} is required` });
       return null;
     }
     if (!validateEmail(email)) {
-      res.status(500).json({ error: { message: "Email must be valid" } });
+      res.status(500).json({ message: "Email must be valid" });
       return null
     }
     await User.find({ email }, async (err, user) => {
@@ -95,7 +95,7 @@ const login = (req, res) => {
       if (user.length === 0) {
         res
           .status(401)
-          .json({ error: { message: "User does not exist!" } });
+          .json({ message: "User does not exist!" });
       } else if (match) {
         res.status(200).json({
           token: createToken({ id: user[0]._id }),
@@ -105,7 +105,7 @@ const login = (req, res) => {
       } else {
         res
           .status(401)
-          .json({ error: { message: "Incorrect password" } });
+          .json({ message: "Incorrect password" });
       }
     })
   });
@@ -115,17 +115,17 @@ const register = (req, res) => {
   const { name, email, password } = req.body;
   Joi.validate(data, registerSchema, async (err) => {
     if(password.length < 6){
-      res.status(500).json({ error: { message: `Password no less than symbols` } });
+      res.status(500).json({ message: `Password no less than symbols` });
     }
     if (err) {
       const str = err.details[0].path[0]
-      res.status(500).json({ error: { message: `${validateMessage(str)} is required` } });
+      res.status(500).json({ message: `${validateMessage(str)} is required` });
       return null
     }
 
   
     if (!validateEmail(email)) {
-      res.status(500).json({ error: { message: "Email must be valid" } });
+      res.status(500).json({ message: "Email must be valid"});
       return null
     }
 
@@ -133,7 +133,7 @@ const register = (req, res) => {
       if (user.length !== 0) {
         return res
           .status(409)
-          .json({ error: { message: "User already exsist" } });
+          .json({ message: "User already exsist"});
       }
     });
       
