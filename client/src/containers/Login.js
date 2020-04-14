@@ -25,30 +25,32 @@ class Login extends Component {
     this.props.login(data);
   };
   render() {
+    const { email, password } = this.state
     return (
       <AuthWindow name="showWindowLeft" image={loginImg} text="Sign in">
         <form action="">
           <CustomInput
-            inputPlaceholder="Email"
+            value={email}
+            placeholder="Email"
             typeInp="email"
             setValue={val => this.setState({ email: val })}
           />
           <CustomInput
-            inputPlaceholder="Password"
-            typeInp="password"
+            value={password}
+            placeholder="Password"
+            type="password"
             setValue={val => this.setState({ password: val })}
           />
           <Buttons>
             <CustomButton
               text="Sign in"
-              bgColor={'transparent'}
-              brColor={'1px solid #f27059'}
-              textColor={'#f27059'}
+              style={{borderColor: '#f27059', color: '#f27059'}}
               setClick={this.singIn}
-              type='submit' />
+              type='submit' 
+            />
             <RedirectToPage onClick={() => browserHistory.push("/signUp")}>
               Sign up
-          </RedirectToPage>
+            </RedirectToPage>
           </Buttons>
         </form>
       </AuthWindow>

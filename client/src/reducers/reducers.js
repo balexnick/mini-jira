@@ -3,7 +3,7 @@ export const initialState = {
   [CONSTANT.USER_DATA]: {},
   [CONSTANT.LOADER]: false,
   [CONSTANT.ALL_TASKS]: [],
-  [CONSTANT.MODAL]: false
+  [CONSTANT.MODAL]: false /***/
 };
 
 export function rootReduser(state = initialState, action) {

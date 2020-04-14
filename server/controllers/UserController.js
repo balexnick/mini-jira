@@ -34,14 +34,12 @@ const updateUserData = {
 const allUsers = (req, res) => {
   User.find().exec().then(users => res.json(users));
 };
-
 const findCurrent = async (req, res) => {
   const user = await User.find({ _id: req.body.id });
   if (!user)
     return res.status(500).json({ message: "user not found" });
   return res.status(200).json(user);
 };
-
 const editUser = (req, res) => {
   const data = req.body;
   const { name, email, password, id } = req.body

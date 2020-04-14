@@ -1,30 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-const CustomInput = ({ setValue, placeholder, type, disabled, value }) => {
+const CustomTextarea = ({ setValue, placeholder, disabled, value }) => {
   return (
-    <Input
-      value={value}
-      disabled={disabled}
-      placeholder={placeholder}
-      type={type}
-      onChange={e => setValue(e.target.value)}
-    />
+      <Textarea
+        cols="40"
+        rows="8"
+        value={value}
+        placeholder={placeholder}
+        disabled={disabled}
+        onChange={e => setValue(e.target.value)}
+      />
   );
 };
-export default CustomInput;
-
-const Input = styled.input`
-  margin: 10px 0;
+export default CustomTextarea;
+const Textarea = styled.textarea`
   font-size: 16px;
   padding: 10px 26px 10px 10px;
   display: block;
   width: 25vw;
   border: 1.5px solid #ccc;
-
+  resize: none;
   border-radius: 7px;
   outline: none;
   transition: .3s;
   box-sizing: border-box;
+  font-family: sans-serif;
   @media (max-width: 1200px) {
     width: 30vw;
   }

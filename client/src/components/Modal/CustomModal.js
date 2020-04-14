@@ -8,8 +8,7 @@ import { connect } from 'react-redux'
 import * as CONSTANT from 'constant'
 
 const CustomModal = ({children, openCloseModal}) => {
-  const close = (e) => {
-    e.stopPropagation()
+  const close = () => {
     openCloseModal(false)
   }
   return (

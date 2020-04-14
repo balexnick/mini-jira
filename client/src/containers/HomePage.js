@@ -12,7 +12,7 @@ import NavbarButton from "common/NavbarButton";
 import UserWork from "components/user-tasks/UserWork"
 import Dashboard from "components/dashboard/Dashboard"
 import Users from "components/users/Users"
-import AllTasks from "components/all-tasks/AllTasks"
+import AllTasks from "components/tasks/AllTasks"
 
 const USER_WORK = '/your-work'
 const DASHBOARD = "/dashboard";
@@ -23,7 +23,7 @@ const USER_EDIT = "/edit-your-profile";
 
 const CONTENT_LIST = [USER_WORK, DASHBOARD, USERS, ALL_TASKS, USER_PROFILE, USER_EDIT];
 
-const HomePage = ({match }) => {
+const HomePage = ({ match }) => {
   const hasContent = CONTENT_LIST.includes(match.url);
   const content = {
     [USER_WORK]: <UserWork />,
@@ -35,6 +35,7 @@ const HomePage = ({match }) => {
   };
   return (
     <UserHomePage>
+      <div style={{width: '20vw'}}>
       <NavberContainer>
         <NavbarContent>
           <NavbarButton
@@ -78,6 +79,7 @@ const HomePage = ({match }) => {
           setClick={() => browserHistory.push("/logout")}
         />
       </NavberContainer>
+      </div>
       {hasContent && content[match.url]}
       <ToastContainer autoClose={2000} />
     </UserHomePage >
@@ -91,17 +93,20 @@ HomePage.propTypes = {
 };
 const UserHomePage = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 `
 const NavbarContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 `;
 
-const NavberContainer = styled(NavbarContent)`
+const NavberContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background: #0747a6;
   height: 100vh;
   justify-content: space-between;
   padding: 0 15px;
+  position: fixed;
 `;

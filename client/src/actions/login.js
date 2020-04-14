@@ -13,6 +13,7 @@ export function login(data) {
     const cb = (response) => {
       // cookies.set("token", response.data.token, { expires: 365 });
       // cookies.set("userId", response.data.id, { expires: 365 });
+      console.log(response)
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("userId", response.data.id)
       browserHistory.push("/");

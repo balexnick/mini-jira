@@ -26,22 +26,22 @@ class EditForm extends Component {
     return (
       <div>
         <CustomInput
-          inpValue={name}
-          inputPlaceholder="Name"
-          typeInp="text"
+          value={name}
+          placeholder="Name"
+          type="text"
           setValue={val => this.setState({ name: val })}
         />
         <CustomInput
-          inpValue={email}
-          inputPlaceholder="Email"
-          typeInp="email"
+          value={email}
+          placeholder="Email"
+          type="email"
           setValue={val => this.setState({ email: val })}
         />
         <Password>
           <CustomInput
-            inpValue={password}
-            inputPlaceholder="Password"
-            typeInp={this.state.visable ? "test" : "password"}
+            value={password}
+            placeholder="Password"
+            type={this.state.visable ? "test" : "password"}
             setValue={val => this.setState({ password: val })}
           />
           <ShowPassword onClick={() => this.setState({ visable: !visable })}>

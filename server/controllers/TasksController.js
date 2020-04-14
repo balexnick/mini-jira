@@ -1,5 +1,6 @@
 const Tasks = require("../models/Tasks");
 const Joi = require("joi");
+const validateMessage = require("../utils/authValidation").validateMessage;
 const createNewTask = {
   title: Joi.string().required(),
   description: Joi.string().required()
@@ -21,10 +22,11 @@ const create = (req, res) => {
   const data = req.body;
   Joi.validate(data, createNewTask, async (err, value) => {
     if (err) {
-      return res.status(422).json({ message: err.details });
+      const str = err.details[0].path[0]
+      return res.status(500).json({ message: `${validateMessage(str)} is required` });
     } else {
       let createdTack = {
-        data, status: 'todo'
+        data, status: 1
       }
       await Tasks.create(createdTack);
       res.status(201).json({

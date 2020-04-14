@@ -27,31 +27,35 @@ class Register extends Component {
     this.props.register(data);
   };
   render() {
+    const { name, email, password } = this.state
     return (
       <AuthWindow name="showWindowRight" image={registerImg} text="Sign Up">
         <form action="">
           <CustomInput
-            inputPlaceholder="Name"
-            typeInp="text"
+            value={name}
+            placeholder="Name"
+            type="text"
             setValue={val => this.setState({ name: val })}
           />
           <CustomInput
-            inputPlaceholder="Email"
-            typeInp="email"
+            value={email}
+            placeholder="Email"
+            type="email"
             setValue={val => this.setState({ email: val })}
           />
           <CustomInput
-            inputPlaceholder="Password"
-            typeInp="password"
+            value={password}
+            placeholder="Password"
+            type="password"
             setValue={val => this.setState({ password: val })}
           />
           <Buttons>
             <CustomButton
               text="Sign up"
-              bgColor={'transparent'}
-              brColor={'1px solid #f27059'}
-              textColor={'#f27059'}
-              setClick={this.signUp} />
+              style={{borderColor: '#f27059', color: '#f27059'}}
+              setClick={this.signUp} 
+              type='submit' 
+            />
             <RedirectToPage onClick={() => browserHistory.push("/signIn")}>
               Sing in
           </RedirectToPage>

@@ -1,23 +1,47 @@
-import React from 'react'
-import CustomModal from './CustomModal'
-import CustomInput from 'common/CustomInput'
+import React from 'react';
+import CustomModal from './CustomModal';
+import CustomInput from 'common/CustomInput';
+import Textarea from 'common/CustomTextarea';
+import CustomButton from 'common/CustomButton';
+import { createTask } from 'actions/create-task';
+import { connect } from 'react-redux'
+import PropTypes from "prop-types";
 
-const AddTaskModal = props => {
-  const [title, setTitle] = React.useState('')
+const AddTaskModal = ({create}) => {
+  const [title, setTitle] = React.useState('');
+  const [description, setDescription] = React.useState('')
   return (
     <CustomModal>
       <CustomInput
-        inpValue={title}
-        inputPlaceholder="Task title"
-        typeInp="text"
+        value={title}
+        placeholder="Task title"
+        type="text"
         setValue={val => setTitle(val)}
+      />
+      <Textarea
+        value={description}
+        placeholder={"Task description"}
+        setValue={val => setDescription(val)}
+      />
+      <CustomButton
+        style={{marginTop: '10px'}}
+        text={"Create"}
+        setClick={() => create({title, description})}
       />
     </CustomModal>
   )
 }
 
-// AddTaskModal.propTypes = {
+AddTaskModal.propTypes = {
+  create: PropTypes.func.isRequired
+}
 
-// }
+const mapDispatchToProps = dispatch => {
+  return{
+    create: data => dispatch(createTask(data))
+  }
+}
 
-export default AddTaskModal
+export default connect(null, mapDispatchToProps)(AddTaskModal)
+
+
